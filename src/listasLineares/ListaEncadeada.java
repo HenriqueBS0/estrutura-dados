@@ -2,6 +2,9 @@ package listasLineares;
 public class ListaEncadeada<T> {
 	private Nodo<T> inicio;
 	
+	public ListaEncadeada() {
+	}
+	
 	public ListaEncadeada(T dado) {
 		inicio = new Nodo<T>(dado);
 	}
@@ -18,6 +21,12 @@ public class ListaEncadeada<T> {
 	
 	public void inserirFinal(T dado) {
 		Nodo<T> nodo = new Nodo<T>(dado);
+		
+		if(this.getUltimoNodo() == null) {
+			inicio = nodo;
+			return;
+		}
+		
 		this.getUltimoNodo().setProximo(nodo);
 	}
 	
@@ -36,10 +45,7 @@ public class ListaEncadeada<T> {
 		
 		Nodo<T> nodo = inicio;
 				
-		while(
-				nodo.getProximo() != null && 
-				nodo.getProximo().getProximo() != null
-		) {
+		while(nodo.getProximo().getProximo() != null) {
 			nodo = nodo.getProximo();
 		}
 		
@@ -93,6 +99,8 @@ public class ListaEncadeada<T> {
 	}
 	
 	public Nodo<T> getUltimoNodo() {
+		if(inicio == null) return inicio;
+		
 		Nodo<T> nodo = inicio;
 		
 		while(nodo.getProximo() != null) { 

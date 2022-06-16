@@ -1,11 +1,12 @@
 package listasLineares;
 public class Nodo<T> {
 	private T dado;
-	private Nodo<T> nodo;
+	private Nodo<T> proximo = null;
+	private Nodo<T> anterior = null;
 	
 	public Nodo(T dado) {
 		this.dado = dado;
-		this.nodo = null;
+		this.proximo = null;
 	}
 	
 	public T getDado() {
@@ -13,7 +14,11 @@ public class Nodo<T> {
 	}
 	
 	public Nodo<T> getProximo() {
-		return nodo;
+		return proximo;
+	}
+	
+	public Nodo<T> getAnterior() {
+		return anterior;
 	}
 	
 	public void setDado(T dado) {
@@ -21,7 +26,10 @@ public class Nodo<T> {
 	}
 	
 	public void setProximo(Nodo<T> nodo) {
-		this.nodo = nodo;
+		this.proximo = nodo;
 	}
 	
+	public void setAnterior(Nodo<T> nodo) {
+		this.anterior = nodo;
+	}
 }

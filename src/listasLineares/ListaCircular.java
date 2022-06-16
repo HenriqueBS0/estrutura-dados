@@ -4,9 +4,21 @@ public class ListaCircular<T> {
 	private Nodo<T> inicio;
 	private Nodo<T> fim;
 	
+	public ListaCircular() {
+		
+	}
+	
 	public ListaCircular(T dado) {
 		Nodo<T> nodo = new Nodo<T>(dado);
 		inserirPrimeiroElemento(nodo);
+	}
+	
+	public Nodo<T> getInicio() {
+		return inicio;
+	}
+	
+	public Nodo<T> getFim() {
+		return fim;
 	}
 	
 	public void inserirInicio(T dado) {
