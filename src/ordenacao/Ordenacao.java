@@ -3,7 +3,7 @@ package ordenacao;
 public class Ordenacao {
     public static void main(String[] args) {    
         int[] array = {1, 4, 23, 2, 5, 6};
-        for (int numero : insertsort(array)) {
+        for (int numero : bublesort(array)) {
             System.out.println(numero);
         }
     }
