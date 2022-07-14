@@ -7,7 +7,12 @@ public class Main {
         arvore.inserir(5);
         arvore.inserir(6);
         arvore.inserir(4);
+        arvore.inserir(7);
+        arvore.inserir(1);
 
-        arvore.mostrarEmOrdem();
+        arvore.remover(6);
+        arvore.remover(1);
+
+        System.out.println(arvore.menorNumero());
     }
 }
