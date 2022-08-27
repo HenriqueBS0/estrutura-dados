@@ -126,4 +126,13 @@ public class ListaEncadeada<T> {
 		
 		return 0;
 	}
+
+	public void unir(ListaEncadeada<T> lista) {
+		Nodo<T> nodo = lista.inicio;
+		
+		while(nodo != null) {
+			inserirFinal(nodo.getDado());
+			nodo = nodo.getProximo();
+		}
+	}
 }
