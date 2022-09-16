@@ -1,5 +1,6 @@
 package arvoresavl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ArvoreAVL {
@@ -118,6 +119,9 @@ public class ArvoreAVL {
 		return auxiliar1;
 	}
 	
+	public Nodo getRaiz() {
+		return this.raiz;
+	}
 	
 	private Nodo rotacaoDireita(Nodo raiz) {
 		
@@ -149,12 +153,9 @@ public class ArvoreAVL {
 		return auxiliar1;
 	}
 	
-	
-	
 
 	public void mostrarEmOrdem() {
 		mostrandoOrdenado(raiz);
-
 	}
 
 	private void mostrandoOrdenado(Nodo raiz) {
@@ -356,6 +357,85 @@ public class ArvoreAVL {
 		}
 
 		return lista;
+	}
+
+	public static boolean arvoresIguais(ArvoreAVL arvore1, ArvoreAVL arvore2) {
+		return arvoresIguais(arvore1.getRaiz(), arvore2.getRaiz());
+	}
+
+	public static boolean arvoresIguais(Nodo raiz1, Nodo raiz2) {
+		if(raiz1 == null) {
+			return raiz2 == null;
+		}
+
+		boolean dadosNodoIguais = raiz1.dado == raiz2.dado;
+		return dadosNodoIguais 
+			&& arvoresIguais(raiz1.dir, raiz2.dir) 
+			&& arvoresIguais(raiz1.esq, raiz2.esq); 
+	}
+	
+	public void mostra_chaves_decrescentes() {
+		mostrandoOrdenadoDecrescente(this.getRaiz());
+	}
+
+	private void mostrandoOrdenadoDecrescente(Nodo raiz) {
+		if (raiz != null) {
+			mostrandoOrdenadoDecrescente(raiz.dir);
+			System.out.println(raiz.dado);
+			mostrandoOrdenadoDecrescente(raiz.esq);
+		}
+	}
+
+	public boolean isAVL() {
+		return isAVL(this.getRaiz());
+	}
+
+	private static boolean isAVL(Nodo raiz) {
+
+		if(raiz == null) {
+			return true;
+		}
+
+		int fatorBalanceamento = raiz.alturaDireita - raiz.alturaEsquerda; 
+
+		return fatorBalanceamento >= -1 && fatorBalanceamento <= 1 &&
+			isAVL(raiz.dir) && isAVL(raiz.esq);
+	}
+
+	public void mostrarPorNivel() {
+		if(raiz == null) {
+			return;
+		}
+
+		
+		ArrayList<Nodo> nodosProximoNivel = new ArrayList<Nodo>(); 
+		nodosProximoNivel.add(raiz);
+
+		int nivel = 0;
+
+		
+		while(!nodosProximoNivel.isEmpty()) {
+			ArrayList<Nodo>  nodosAtuais = nodosProximoNivel;
+			nodosProximoNivel = new ArrayList<Nodo>(); 
+
+			nivel++;
+
+			String linha = nivel + " - ";
+
+			for (Nodo nodo : nodosAtuais) {
+				linha+= nodo.dado + " ";
+
+				if(nodo.esq != null) {
+					nodosProximoNivel.add(nodo.esq);
+				}
+				if(nodo.dir != null) {
+					nodosProximoNivel.add(nodo.dir);
+				}
+			}
+
+			System.out.println(linha);
+		}
+
 	}
 
 }
